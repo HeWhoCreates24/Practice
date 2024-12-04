@@ -26,7 +26,12 @@ public class sumOfNthRowInAMatrix{
                 sum += mat [N][j];
             }
             // Display Sum
-            System.out.println("Sum of the " + N + "th row of the matrix : " + sum);
+            switch (N) {
+                case 1 -> System.out.println("Sum of the " + N + "st row of the matrix : " + sum);
+                case 2 -> System.out.println("Sum of the " + N + "nd row of the matrix : " + sum);
+                case 3 -> System.out.println("Sum of the " + N + "rd row of the matrix : " + sum);
+                default -> System.out.println("Sum of the " + N + "th row of the matrix : " + sum);
+            }
         }
     }
 }

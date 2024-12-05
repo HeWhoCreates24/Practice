@@ -1,6 +1,6 @@
 # Practice Code Repository
 
-Welcome to my **Practice Code** repository! 👨‍💻 This is where I practice and improve my coding skills by working on various **Data Structures**, **Algorithms**, and **Classical Interview Questions**.
+Welcome to my **Practice Code** repository! 👨‍💻 This is where I practice and improve my coding skills by working on various **Data Structures**, **Algorithms**, **Tools**, **Frameworks**, and **Classical Interview Questions**.
 
 ## 🚀 About This Repository
 This repository is part of my journey to give my **100%** in mastering programming and problem-solving. It's designed for:
@@ -9,17 +9,19 @@ This repository is part of my journey to give my **100%** in mastering programmi
 - Allowing others to learn from or contribute to my code.
 
 ## 📂 Repository Structure
-The repository is organized into two main folders:
+The repository is organized into folders:
 1. **C++**  
    Contains practice problems and exercises in C++.
    
 2. **Java**  
    Contains practice problems and exercises in Java.
 
-Each folder includes:
-- **Data Structures**: Arrays, Linked Lists, Stacks, Queues, Trees, Graphs, etc.
-- **Algorithms**: Sorting, Searching, Dynamic Programming, Greedy Algorithms, etc.
-- **Interview Questions**: Solutions to popular coding problems.
+3. **Python**  
+   Contains practice problems and exercises in Python.
+
+4. **JavaScript**  
+   Contains practice problems and exercises in JavaScript.
+
 
 ## 🛠️ Tools and Environment
 - **Editor**: [Visual Studio Code](https://code.visualstudio.com/)

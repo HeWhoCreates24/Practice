@@ -6,6 +6,7 @@ public class EMS{
         return empCount;
     }
     public static class Employee {
+        @SuppressWarnings("unused")
         int id;
         String name;
         String position;

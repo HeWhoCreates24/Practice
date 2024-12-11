@@ -1,0 +1,31 @@
+body div{
+    height: 98vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.box{
+    height: 100px;
+    width: 100px;
+    margin: 10px;
+    background-color: pink;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.para{
+    width: 50%;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: lightblue;
+    color: black;
+    text-align: center;
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid black;
+}
+.changeColor{
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+}
+}

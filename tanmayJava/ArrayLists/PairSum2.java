@@ -1,10 +1,10 @@
 import java.util.*;
 
-public class PairSum1 {
+public class PairSum2 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         
-        // Input array assuming sorted array
+        // Input array assuming sorted and rotated array
         ArrayList<Integer> nums = new ArrayList<>();
         System.out.println("Enter numbers (end with .):");
         while (sc.hasNextInt()) {
@@ -28,9 +28,21 @@ public class PairSum1 {
                 found = true;
                 break;
             } else if (currSum < target) {
-                st++;
+                if (nums.get(st+1) < nums.get(st)){
+                    en = st;
+                    st = 0;
+                }
+                else{
+                    st++;
+                }
             } else {
-                en--;
+                if (nums.get(en-1) > nums.get(en)){
+                    st = en;
+                    en = nums.size()-1;
+                }
+                else{
+                    en--;
+                }
             }
         }
 

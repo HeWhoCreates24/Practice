@@ -1,6 +1,7 @@
 import java.util.*;
 
 public class LonelyNumbers {
+    @SuppressWarnings({"BoxedValueEquality", "NumberEquality"})
     public static void main(String[] args) {
         try ( Scanner sc = new Scanner(System.in)) {
 

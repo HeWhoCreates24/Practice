@@ -18,45 +18,34 @@ public class ContainerWithMostWater {
                 return;
             }
 
-            // Logic to calculate max water
+            // 2 pointer approach
             int st = 0;
             int en = height.size() - 1;
-            int maxWater = Math.min(height.get(st), height.get(en)) * (en - st);
-            int p1 = st, p2 = en;
-            int i = 1;
+            // vars to store max water poles and ammount
+            int p1 = st;
+            int p2 = en;
+            int maxWater = 0;
 
-            while (st < en && i < en - st) {
-                if (height.get(st) <= height.get(en)) {
-                    if (height.get(st + i) > height.get(st)) {
-                        st += i;
-                        int currWater = Math.min(height.get(st), height.get(en)) * (en - st);
-                        if (currWater > maxWater) {
-                            maxWater = currWater;
-                            p1 = st;
-                            p2 = en;
-                        }
-                        i = 1; // Reset step
-                    } else {
-                        i++;
-                    }
-                } else {
-                    if (height.get(en - i) > height.get(en)) {
-                        en -= i;
-                        int currWater = Math.min(height.get(st), height.get(en)) * (en - st);
-                        if (currWater > maxWater) {
-                            maxWater = currWater;
-                            p1 = st;
-                            p2 = en;
-                        }
-                        i = 1; // Reset step
-                    } else {
-                        i++;
-                    }
+            while(st < en){
+                // calculate current water between the pointers
+                int currWater = (Math.min(height.get(st), height.get(en)))*(en-st);
+                // update max water data
+                if (currWater > maxWater){
+                    maxWater = currWater;
+                    p1 = st;
+                    p2 = en;
+                }
+                // move the smaller pole pointer
+                if (height.get(st) < height.get(en)){
+                    st++;
+                }
+                else{
+                    en--;
                 }
             }
-
             // Display results
             System.out.println("Pole 1: " + p1 + ", Pole 2: " + p2 + ", Max Water: " + maxWater + " units");
+            // time complexity O(n)
         }
     }
 }

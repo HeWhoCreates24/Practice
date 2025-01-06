@@ -3,7 +3,7 @@ public class DoublyLinkedList{
 
         public static Node head;
         public static Node tail;
-        public static int size = 0;
+        public int size = 0;
 
         private class Node{
             int data;

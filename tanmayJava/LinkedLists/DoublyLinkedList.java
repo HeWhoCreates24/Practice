@@ -1,9 +1,9 @@
 public class DoublyLinkedList{
     public static class DLL{
 
-        public Node head = null;
-        public Node tail = null;
-        public int size = 0;
+        public static Node head;
+        public static Node tail;
+        public static int size = 0;
 
         private class Node{
             int data;
@@ -12,6 +12,8 @@ public class DoublyLinkedList{
 
             public Node(int data){
                 this.data = data;
+                this.next = null;
+                this.prev = null;
             }
         }
 

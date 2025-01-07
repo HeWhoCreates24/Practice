@@ -313,7 +313,7 @@ public class LinkedList {
     }
 
     public void removeNAfterM(int n, int m){
-        Node start = head, end = start;
+        Node start = head, end;
         boolean done = false;
 
         while(true){
@@ -340,9 +340,10 @@ public class LinkedList {
                 break;
             }
 
-
-            start.next = end.next;
-            start = start.next;
+            if(start != null && end != null){
+                start.next = end.next;
+                start = start.next;
+            }
         }
     }
 
@@ -410,7 +411,7 @@ public class LinkedList {
 
         while (current != null) {
             if (current.data % 2 == 0) { // Even node
-                if (evenHead == null) {
+                if (evenTail == null) {
                     evenHead = current;
                     evenTail = evenHead;
                 } else {
@@ -418,7 +419,7 @@ public class LinkedList {
                     evenTail = current;
                 }
             } else { // Odd node
-                if (oddHead == null) {
+                if (oddTail == null) {
                     oddHead = current;
                     oddTail = oddHead;
                 } else {
@@ -438,7 +439,7 @@ public class LinkedList {
         // If there are even nodes, link the even list to the odd list
         if (evenHead != null) {
             head = evenHead;
-            if (oddHead != null) {
+            if (oddHead != null && evenTail != null) {
                 evenTail.next = oddHead;
             }
         } else {

@@ -400,16 +400,66 @@ public class LinkedList {
         }
     }
 
+    public void oddEven() {
+        if (head == null || head.next == null) {
+            return; // No need to rearrange if the list is empty or has only one node
+        }
+
+        Node oddHead = null, evenHead = null, oddTail = null, evenTail = null;
+        Node current = head;
+
+        while (current != null) {
+            if (current.data % 2 == 0) { // Even node
+                if (evenHead == null) {
+                    evenHead = current;
+                    evenTail = evenHead;
+                } else {
+                    evenTail.next = current;
+                    evenTail = current;
+                }
+            } else { // Odd node
+                if (oddHead == null) {
+                    oddHead = current;
+                    oddTail = oddHead;
+                } else {
+                    oddTail.next = current;
+                    oddTail = oddTail.next;
+                }
+            }
+            current = current.next;
+        }
+
+        // End the odd list
+        if (oddTail != null) {
+            oddTail.next = null;
+            tail = oddTail;
+        }
+
+        // If there are even nodes, link the even list to the odd list
+        if (evenHead != null) {
+            head = evenHead;
+            if (oddHead != null) {
+                evenTail.next = oddHead;
+            }
+        } else {
+            head = oddHead; // If there are no even nodes, the head will be the oddHead
+        }
+    }
+
 
     public static void main(String[] args) {
         LinkedList ll = new LinkedList();
-        ll.addFirst(1);
-        ll.addLast(2);
-        ll.addLast(3);
+
+        ll.addLast(8);
+        ll.addLast(12);
+        ll.addLast(10);
+        ll.addLast(5);
         ll.addLast(4);
+        ll.addLast(1);
+        ll.addLast(6);
 
         ll.print();
-        ll.swapNodes(1, 1);
+        ll.oddEven();
         ll.print();
     }
 }

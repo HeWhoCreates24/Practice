@@ -293,7 +293,123 @@ public class LinkedList {
         return false;
     }
 
+    public Node findIntersect(LinkedList l2){
+
+        Node h1 = this.head;
+        Node h2 = l2.head;
+
+        while(h1 != null){
+            while(h2 != null){
+                if(h1 == h2){
+                    return h2;
+                }
+                h2 = h2.next;
+            }
+            h1 = h1.next;
+            h2 = l2.head;
+        }
+
+        return null;
+    }
+
+    public void removeNAfterM(int n, int m){
+        Node start = head, end = start;
+        boolean done = false;
+
+        while(true){
+
+            for(int i = 0; i < m-1; i++){
+                if(start == null || start.next == null){
+                    done = true;
+                    break;
+                }
+                start = start.next;
+            }
+
+            end = start;
+
+            for(int i = 0; i < n; i++){
+                if(end == null || end.next == null){
+                    done = true;
+                    break;
+                }
+                end = end.next;
+            }
+
+            if(done){
+                break;
+            }
+
+
+            start.next = end.next;
+            start = start.next;
+        }
+    }
+
+    public void swapNodes(int n1, int n2) {
+
+        if (head == null) {
+            System.err.println("list is empty");
+            return;
+        }
+
+        // If n1 and n2 are the same, no swap is needed
+        if (n1 == n2) {
+            return;
+        }
+
+        Node node1prev = null, node2prev = null;
+        Node node1 = head, node2 = head;
+
+        // Find previous node of n1 and n2
+        for (int i = 1; i < n1; i++) {
+            node1prev = node1;
+            node1 = node1.next;
+        }
+
+        for (int i = 1; i < n2; i++) {
+            node2prev = node2;
+            node2 = node2.next;
+        }
+
+        // If either node1 or node2 is null, return as the nodes do not exist
+        if (node1 == null || node2 == null) {
+            System.err.println("One or both nodes not found.");
+            return;
+        }
+
+        // Swap the nodes if they are not adjacent
+        if (node1 != node2) {
+            // Update previous nodes' next pointers
+            if (node1prev != null) {
+                node1prev.next = node2;
+            } else { // If node1 is the head
+                head = node2;
+            }
+
+            if (node2prev != null) {
+                node2prev.next = node1;
+            } else { // If node2 is the head
+                head = node1;
+            }
+
+            // Swap the next pointers of the nodes
+            Node temp = node1.next;
+            node1.next = node2.next;
+            node2.next = temp;
+        }
+    }
+
+
     public static void main(String[] args) {
-        LinkedList l1 = new LinkedList();
+        LinkedList ll = new LinkedList();
+        ll.addFirst(1);
+        ll.addLast(2);
+        ll.addLast(3);
+        ll.addLast(4);
+
+        ll.print();
+        ll.swapNodes(1, 1);
+        ll.print();
     }
 }

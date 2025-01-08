@@ -16,7 +16,7 @@ public class SimplifyPath{
                 s.pop();
 
                 if (s.isEmpty()){
-                    return "cannot access root parent";
+                    return "/";
                 }
 
                 while (s.peek() != '/'){

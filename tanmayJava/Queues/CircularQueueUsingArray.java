@@ -4,7 +4,7 @@ public class CircularQueueUsingArray{
     public static class CircularQueue{
 
         int[] queue;
-        private int size;
+        private int size = 0;
         private int front;
         private int rear;
 

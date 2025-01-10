@@ -44,9 +44,9 @@ public class FractionalKnapsack{
                 // fill the bag
                 profit += bag * (int) items[i][2];
                 bag = 0;
+                break;
 
             }
-            if (bag == 0) break;
 
         }
 

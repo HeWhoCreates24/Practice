@@ -2,25 +2,30 @@ public class SmallestStringSum{
 
     public static void main(String[] args) {
         
-        int n = 4, k = 42;
+        int n = 5, k = 42;
 
-        StringBuilder sb = new StringBuilder("");
+        if (k < n || k > (n * 26)){
+            System.out.println("Invalid K");
+            return;
+        }
+
+        StringBuilder str = new StringBuilder("");
 
         char[] chars = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
 
         for (int i = 0; i < 26; i++){
 
-            while (((sb.length() - 1) * 26) >= (k - (i + 1))){
+            while ((((n - str.length()) - 1) * 26) >= (k - (i + 1))){
 
-                if (sb.length() == (n - 1)){
+                if (str.length() == (n - 1)){
 
-                    sb.append(chars[k-1]);
+                    str.append(chars[k-1]);
                     k = 0;
                     break;
 
                 }
 
-                sb.append(chars[i]);
+                str.append(chars[i]);
                 k -= (i + 1);
 
             }
@@ -29,7 +34,7 @@ public class SmallestStringSum{
 
         }
 
-        System.out.println(sb);
+        System.out.println(str.toString());
 
     }
 

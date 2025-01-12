@@ -246,6 +246,25 @@ public class Tree{
 
         }
 
+        public Node lca(Node root, Node n1, Node n2){
+            if (root == null || root == n1 || root == n2){
+                return root;
+            }
+
+            Node leftLca = lca(root.left, n1, n2);
+            Node rightLca = lca(root.right, n1, n2);
+
+            if (rightLca == null){
+                return leftLca;
+            }
+
+            if (leftLca == null){
+                return rightLca;
+            }
+
+            return root;
+        }
+
     }
     public static void main(String[] args) {
 
@@ -283,6 +302,13 @@ public class Tree{
         System.out.println();
         
         tree.kthLevel(root, 1, 3);
+
+        Node a = root.left.left;
+        Node b = root.left.right;
+
+        System.out.println();
+
+        System.out.println(tree.lca(root, a, b).data);
         
     }
 }

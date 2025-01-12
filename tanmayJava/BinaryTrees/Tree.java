@@ -218,8 +218,8 @@ public class Tree{
 
             }
 
-            for (int i = minHd; i < maxHd; i++){
-                System.out.print(map.get(i) + " ");
+            for (; minHd < maxHd; minHd++){
+                System.out.print(map.get(minHd) + " ");
             }
 
         }
@@ -233,14 +233,12 @@ public class Tree{
             if (curr == target){
 
                 System.out.print(root.data + " ");
-                return;
 
             }
             else{
 
                 kthLevel(root.left, curr + 1 , target);
                 kthLevel(root.right, curr + 1 , target);
-                return;
 
             }
 

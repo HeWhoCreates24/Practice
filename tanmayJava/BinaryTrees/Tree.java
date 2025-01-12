@@ -263,6 +263,40 @@ public class Tree{
             return root;
         }
 
+        public int dist(Node root, Node n){
+
+            if (root == null){
+                return -1;
+            }
+
+            if (root == n){
+                return 0;
+            }
+
+            int left = dist(root.left, n);
+            int right = dist(root.right, n);
+
+            if (left != -1){
+                return left + 1;
+            }else if (right != -1){
+                return right + 1;
+            }else{
+                return -1;
+            }
+
+        }
+
+        public int minDistance(Node root, Node n1, Node n2){
+
+            Node lca = lca(root, n1, n2);
+
+            int d1 = dist(lca, n1);
+            int d2 = dist(lca, n2);
+
+            return d1 + d2;
+
+        }
+
     }
     public static void main(String[] args) {
 
@@ -302,11 +336,13 @@ public class Tree{
         tree.kthLevel(root, 1, 3);
 
         Node a = root.left.left;
-        Node b = root.left.right;
+        Node b = root.right.right;
 
         System.out.println();
 
         System.out.println(tree.lca(root, a, b).data);
+
+        System.out.println(tree.minDistance(root, a, b));
         
     }
 }

@@ -297,6 +297,44 @@ public class Tree{
 
         }
 
+        public int kthAncestor(Node root, Node n, int k){
+
+            if (root == null){
+                return -1;
+            }
+
+            if (root == n){
+                return 0;
+            }
+
+            int left = kthAncestor(root.left, n, k);
+            int right = kthAncestor(root.right, n, k);
+
+            int dist = Math.max(left, right);
+
+            if (dist == -1) return -1;
+
+            if (dist + 1 == k){
+                System.out.println(root.data);
+            }
+
+            return dist + 1;
+        }
+
+        public int sumTree(Node root){
+            if (root == null) return 0;
+
+            int left = sumTree(root.left);
+            int right = sumTree(root.right);
+
+            int data = root.data;
+            root.data = left + right;
+            if (root.right != null) root.data += root.right.data;
+            if (root.left != null) root.data += root.left.data;
+
+            return data;
+        }
+
     }
     public static void main(String[] args) {
 
@@ -305,44 +343,52 @@ public class Tree{
         BinaryTree tree = new BinaryTree();
         Node root = tree.BuildBinaryTree(preorder);
 
-        System.out.println("Preorder traversal of constructed binary tree is:");
-        tree.preorderTraversal(root);
+        // System.out.println("Preorder traversal of constructed binary tree is:");
+        // tree.preorderTraversal(root);
 
-        System.out.println("\nInorder traversal of constructed binary tree is:");
-        tree.inorderTraversal(root);
+        // System.out.println("\nInorder traversal of constructed binary tree is:");
+        // tree.inorderTraversal(root);
 
-        System.out.println("\nPostorder traversal of constructed binary tree is:");
-        tree.postorderTraversal(root);
+        // System.out.println("\nPostorder traversal of constructed binary tree is:");
+        // tree.postorderTraversal(root);
 
-        System.out.println("\nLevelorder traversal of constructed binary tree is:");
-        tree.levelorderTraversal(root);
+        // System.out.println("\nLevelorder traversal of constructed binary tree is:");
+        // tree.levelorderTraversal(root);
 
-        System.out.println("Node count of the binary tree is: " + tree.nodeCount(root));
+        // System.out.println("Node count of the binary tree is: " + tree.nodeCount(root));
 
-        System.out.println("Node sum of the binary tree is: " + tree.sum(root));
+        // System.out.println("Node sum of the binary tree is: " + tree.sum(root));
 
-        System.out.println("Height of the binary tree is: " + tree.heightDiameter(root)[0] + " nodes");
+        // System.out.println("Height of the binary tree is: " + tree.heightDiameter(root)[0] + " nodes");
 
-        System.out.println("Diameter of the binary tree is: " + tree.heightDiameter(root)[1] + " nodes");
+        // System.out.println("Diameter of the binary tree is: " + tree.heightDiameter(root)[1] + " nodes");
 
-        Node subRoot = root.left;
+        // Node subRoot = root.left;
 
-        System.out.println(tree.subTreeOfAnotherTree(root, subRoot));
+        // System.out.println(tree.subTreeOfAnotherTree(root, subRoot));
 
-        tree.topView(root);
+        // tree.topView(root);
 
-        System.out.println();
+        // System.out.println();
         
-        tree.kthLevel(root, 1, 3);
+        // tree.kthLevel(root, 1, 3);
 
-        Node a = root.left.left;
-        Node b = root.right.right;
+        // Node a = root.left.left;
+        // Node b = root.right.right;
 
-        System.out.println();
+        // System.out.println();
 
-        System.out.println(tree.lca(root, a, b).data);
+        // System.out.println(tree.lca(root, a, b).data);
 
-        System.out.println(tree.minDistance(root, a, b));
+        // System.out.println(tree.minDistance(root, a, b));
+
+        // tree.kthAncestor(root, b, 2);
+
+        // tree.levelorderTraversal(root);
+
+        // tree.sumTree(root);
+
+        // tree.levelorderTraversal(root);
         
     }
 }

@@ -338,10 +338,10 @@ public class Tree{
     }
     public static void main(String[] args) {
 
-        int[] preorder = {1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1};
+        // int[] preorder = {1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1};
 
-        BinaryTree tree = new BinaryTree();
-        Node root = tree.BuildBinaryTree(preorder);
+        // BinaryTree tree = new BinaryTree();
+        // Node root = tree.BuildBinaryTree(preorder);
 
         // System.out.println("Preorder traversal of constructed binary tree is:");
         // tree.preorderTraversal(root);

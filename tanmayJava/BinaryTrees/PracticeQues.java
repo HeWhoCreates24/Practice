@@ -128,6 +128,18 @@ public class PracticeQues {
 
             return str;
         }
+
+        public int maxPathSum(){
+            if (root == null) return 0;
+
+            return mpsHelper(root);
+        }
+
+        private int mpsHelper(Node<T> n){
+            if (n == null) return 0;
+
+            return Math.max(mpsHelper(n.left), mpsHelper(n.right)) + (int)n.data;
+        }
     }
 
     public static void main(String[] args) {
@@ -147,7 +159,9 @@ public class PracticeQues {
         // tree.deleteLeavesOfX(tree.getRoot(), 5);
         // tree.deleteLeavesOfX(tree.getRoot(), 3);
 
-        System.out.println(tree.findDuplicateSubtrees());
+        // System.out.println(tree.findDuplicateSubtrees());
+
+        System.out.println(tree.maxPathSum());
 
         // tree.printTree(tree.getRoot(), "", true);
 

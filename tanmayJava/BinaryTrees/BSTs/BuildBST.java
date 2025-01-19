@@ -177,6 +177,19 @@ public class BuildBST{
             mirror(node.right);
             mirror(node.left);
         }
+
+        public Node balancedBST(int[] arr, int st, int en){
+            if (st > en) return null;
+
+            int mid = st + (en-st)/2;
+
+            Node newNode = new Node(arr[mid]);
+
+            newNode.left = balancedBST(arr, st, mid-1);
+            newNode.right = balancedBST(arr, mid+1, en);
+
+            return newNode;
+        }
     }
     public static void main(String[] args) {
         BST tree = new BST(new int[]{3, 6, 1, 2, 0, 11, 24, 7});
@@ -204,7 +217,9 @@ public class BuildBST{
 
         // tree.mirror(tree.root);
 
-        // tree.printTree(tree.root, "", true);
+        tree.root = tree.balancedBST(new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20}, 0, 19);
+
+        tree.printTree(tree.root, "", true);
 
     }
 }

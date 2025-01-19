@@ -166,6 +166,17 @@ public class BuildBST{
 
             return validBST(node.left, min, node.data) && validBST(node.right, node.data, max);
         }
+
+        public void mirror(Node node){
+            if (node == null) return;
+
+            Node temp = node.left;
+            node.left = node.right;
+            node.right = temp;
+
+            mirror(node.right);
+            mirror(node.left);
+        }
     }
     public static void main(String[] args) {
         BST tree = new BST(new int[]{3, 6, 1, 2, 0, 11, 24, 7});
@@ -189,7 +200,11 @@ public class BuildBST{
 
         // tree.allPaths(tree.root);
 
-        System.out.println(tree.validBST(tree.root, Integer.MIN_VALUE, Integer.MAX_VALUE));
+        // System.out.println(tree.validBST(tree.root, Integer.MIN_VALUE, Integer.MAX_VALUE));
+
+        // tree.mirror(tree.root);
+
+        // tree.printTree(tree.root, "", true);
 
     }
 }

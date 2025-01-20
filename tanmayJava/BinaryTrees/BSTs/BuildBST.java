@@ -274,9 +274,34 @@ public class BuildBST{
             return balancedBST(merged, 0, merged.length-1);
         }
 
+        public int rangeSum(Node node, int l, int r) {
+             return rangeSumHelper(node, l, r, 0);
+        }
+
+        private int rangeSumHelper(Node node, int l, int r, int sum) {
+            if (node == null) {
+                return sum;
+            }
+
+            if (node.data >= l && node.data <= r) {
+                sum += node.data;
+                sum = rangeSumHelper(node.right, l, r, sum);
+                sum = rangeSumHelper(node.left, l, r, sum);
+            } else if (node.data < l) {
+                sum = rangeSumHelper(node.right, l, r, sum);
+            } else {
+                sum = rangeSumHelper(node.left, l, r, sum);
+            }
+
+            return sum;
+        }
+
+
     }
     public static void main(String[] args) {
         BST tree = new BST(new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15});
+
+        System.out.println(tree.rangeSum(tree.root, 3, 15));
 
         // tree.printTree(tree.root, "", true);
         // tree.inorder(tree.root);

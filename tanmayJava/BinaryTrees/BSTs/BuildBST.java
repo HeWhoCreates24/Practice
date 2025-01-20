@@ -190,11 +190,95 @@ public class BuildBST{
 
             return newNode;
         }
+
+        public ArrayList<Integer> inorderArray(Node node, ArrayList<Integer> arr){
+            if (node == null) return arr;
+
+            inorderArray(node.left, arr);
+            arr.add(node.data);
+            inorderArray(node.right, arr);
+
+            return arr;
+        }
+
+        public Node toBalancedBST(Node node){
+            ArrayList<Integer> al = new ArrayList<>();
+            al = inorderArray(node, al);
+            int[] arr = new int[al.size()];
+            for (int i = 0; i < al.size(); i++){
+                arr[i] = al.get(i);
+            }
+
+            return balancedBST(arr, 0, arr.length-1);
+        }
+
+        public int sizeOf(Node node, int size){
+            if (node == null) return 0;
+
+            return sizeOf(node.left, size) + sizeOf(node.right, size) + 1;
+        }
+
+        public int sizeOfLargestBSTinBT(Node node){
+            if (node == null) return 0;
+
+            if (validBST(node, Integer.MIN_VALUE, Integer.MAX_VALUE)){
+                return sizeOf(node, 0);
+            }
+
+            return (Math.max(sizeOfLargestBSTinBT(node.left), sizeOfLargestBSTinBT(node.right)));
+        }
+
+        public Node mergeBSTs(Node r1, Node r2){
+            if (r1 == null || r2 == null) return (r1 == null ? r2 : r1);
+
+            ArrayList<Integer> a1 = new ArrayList<>();
+            a1 = inorderArray(r1, a1);
+            ArrayList<Integer> a2 = new ArrayList<>();
+            a2 = inorderArray(r2, a2);
+
+            ArrayList<Integer> mergeArr = new ArrayList<>();
+
+            int i = 0, j = 0;
+
+            while (i < a1.size() && j < a2.size()){
+
+                int ele1 = a1.get(i);
+                int ele2 = a2.get(j);
+
+                if (ele1 < ele2){
+                    mergeArr.add(ele1);
+                    i++;
+                }else{
+                    mergeArr.add(ele2);
+                    j++;
+                }
+            }
+
+
+            while (i < a1.size()){
+                mergeArr.add(a1.get(i));
+                i++;
+            }
+
+            while (j < a2.size()){
+                mergeArr.add(a2.get(j));
+                j++;
+            }
+
+            int[] merged = new int[mergeArr.size()];
+
+            for (i = 0; i < mergeArr.size(); i++){
+                merged[i] = mergeArr.get(i);
+            }
+
+            return balancedBST(merged, 0, merged.length-1);
+        }
+
     }
     public static void main(String[] args) {
-        BST tree = new BST(new int[]{3, 6, 1, 2, 0, 11, 24, 7});
+        BST tree = new BST(new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15});
 
-        tree.printTree(tree.root, "", true);
+        // tree.printTree(tree.root, "", true);
         // tree.inorder(tree.root);
 
         // System.out.println(tree.search(tree.root, 4));
@@ -217,9 +301,27 @@ public class BuildBST{
 
         // tree.mirror(tree.root);
 
-        tree.root = tree.balancedBST(new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20}, 0, 19);
+        // tree.root = tree.balancedBST(new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20}, 0, 19);
 
-        tree.printTree(tree.root, "", true);
+        // tree.root.right.right = tree.toBalancedBST(tree.root.right.right);
+
+        // tree.printTree(tree.root, "", true);
+
+        // System.out.println(tree.sizeOfLargestBSTinBT(tree.root));
+
+        // Node r1 = new Node(2);
+        // Node r2 = new Node(9);
+
+        // r1.right = new Node(4);
+        // r1.left = new Node(1);
+
+        // r2.right = new Node(12);
+        // r2.left = new Node(3);
+
+        // // tree.printTree(r1, "", true);
+        // // tree.printTree(r2, "", true);
+
+        // tree.printTree(tree.mergeBSTs(r1, r2), "", true);
 
     }
 }

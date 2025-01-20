@@ -296,12 +296,59 @@ public class BuildBST{
             return sum;
         }
 
+        public int closestTo(int k){
+            if (root == null) return -1;
+
+            return k - closestHelper(root, k, Integer.MAX_VALUE);
+        }
+
+        private int closestHelper(Node node, int k, int minDiff){
+            if (node == null) return minDiff;
+
+            if (Math.abs(node.data - k) < minDiff){
+                minDiff = k - node.data;
+            }
+
+            return Math.min(closestHelper(node.left, k, minDiff), closestHelper(node.right, k, minDiff));
+        }
+
+        public int kthSmalestElement(Node node, int k){
+            ArrayList<Integer> arr = new ArrayList<>();
+            arr = inorderArray(node, arr);
+            return arr.get(k-1);
+        }
+
+        public Node greaterSumTree(Node node){
+            ArrayList<Integer> arr = new ArrayList<>();
+            arr = inorderArray(node, arr);
+
+            int[] maxArr = new int[arr.size()];
+            int sum = 0;
+
+            for (int i = arr.size() - 1; i >= 0; i--){
+                maxArr[i] = sum;
+                sum += arr.get(i);
+            }
+
+            return balancedBST(maxArr, 0, maxArr.length - 1);
+        }
+
 
     }
     public static void main(String[] args) {
-        BST tree = new BST(new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15});
+        BST tree = new BST(new int[]{5, 3, 7, 2, 4, 6, 8});
 
-        System.out.println(tree.rangeSum(tree.root, 3, 15));
+        tree.printTree(tree.root, "", true);
+
+        tree.root = tree.greaterSumTree(tree.root);
+
+        tree.printTree(tree.root, "", true);
+
+        // System.err.println(tree.kthSmalestElement(tree.root, 3));
+
+        // System.out.println(tree.closestTo(7));
+
+        // System.out.println(tree.rangeSum(tree.root, 3, 15));
 
         // tree.printTree(tree.root, "", true);
         // tree.inorder(tree.root);

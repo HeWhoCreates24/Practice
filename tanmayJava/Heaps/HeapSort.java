@@ -31,7 +31,7 @@ public class HeapSort{
         int n = arr.size();
 
         while (n > 0){
-            int temp = (int)arr.get(0);
+            int temp = arr.get(0);
             arr.set(0, arr.get(n-1));
             arr.set(n-1, temp);
 

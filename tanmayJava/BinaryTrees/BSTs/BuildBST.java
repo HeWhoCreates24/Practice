@@ -336,13 +336,13 @@ public class BuildBST{
 
     }
     public static void main(String[] args) {
-        BST tree = new BST(new int[]{5, 3, 7, 2, 4, 6, 8});
+        // BST tree = new BST(new int[]{5, 3, 7, 2, 4, 6, 8});
 
-        tree.printTree(tree.root, "", true);
+        // tree.printTree(tree.root, "", true);
 
-        tree.root = tree.greaterSumTree(tree.root);
+        // tree.root = tree.greaterSumTree(tree.root);
 
-        tree.printTree(tree.root, "", true);
+        // tree.printTree(tree.root, "", true);
 
         // System.err.println(tree.kthSmalestElement(tree.root, 3));
 

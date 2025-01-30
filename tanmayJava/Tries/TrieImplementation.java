@@ -60,6 +60,16 @@ public class TrieImplementation {
                 }
             }
         }
+
+        public boolean wordBreak(String str){
+            if (str.length() == 0) return true;
+            for (int i = 0; i < str.length(); i++){
+                if ((search(str.substring(0, i+1))) && (wordBreak(str.substring(i+1)))){
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 
     public static void main(String[] args) {
@@ -79,5 +89,9 @@ public class TrieImplementation {
         System.out.println("Search 'tanmay': " + t.search("tanmay")); // true
         System.out.println("Search 'tantrum': " + t.search("tantrum")); // false
         System.out.println("Search 'tax': " + t.search("tax")); // true
+
+        // Word break
+        String str = "tantantax";
+        System.out.println("\n"+t.wordBreak(str));
     }
 }

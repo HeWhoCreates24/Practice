@@ -4,36 +4,45 @@ public class TrieImplementation {
         boolean isEOW;
 
         public Node() {
-            this.children = new Node[26]; // Java initializes elements to null
+            this.children = new Node[26];
             this.isEOW = false;
         }
     }
 
     public static class Trie {
-        Node root;
+        private final Node root;
 
         public Trie() {
-            root = new Node(); // Root does not store a character
+            root = new Node();
         }
 
-        public void insert(String str) {
-            insertHelper(root, str, 0);
-        }
-
-        private void insertHelper(Node node, String str, int i) {
-            if (i == str.length()) {
-                node.isEOW = true;
-                return;
+        // Iterative insert method (avoids recursion overhead)
+        public void insert(String word) {
+            Node current = root;
+            for (char ch : word.toCharArray()) {
+                int idx = ch - 'a';
+                if (current.children[idx] == null) {
+                    current.children[idx] = new Node();
+                }
+                current = current.children[idx];
             }
-            char ch = str.charAt(i);
-            int idx = ch - 'a';
-
-            if (node.children[idx] == null) {
-                node.children[idx] = new Node();
-            }
-            insertHelper(node.children[idx], str, i + 1);
+            current.isEOW = true;
         }
 
+        // Search method to check if a word exists in Trie
+        public boolean search(String word) {
+            Node current = root;
+            for (char ch : word.toCharArray()) {
+                int idx = ch - 'a';
+                if (current.children[idx] == null) {
+                    return false;
+                }
+                current = current.children[idx];
+            }
+            return current.isEOW;
+        }
+
+        // DFS-based printAll method (avoids deep recursion)
         public void printAll() {
             printAllHelper(root, new StringBuilder());
         }
@@ -62,6 +71,13 @@ public class TrieImplementation {
         t.insert("tax");
         t.insert("tantrums");
 
+        // Print all words in Trie
         t.printAll();
+
+        // Test search method
+        System.out.println("\nSearch results:");
+        System.out.println("Search 'tanmay': " + t.search("tanmay")); // true
+        System.out.println("Search 'tantrum': " + t.search("tantrum")); // false
+        System.out.println("Search 'tax': " + t.search("tax")); // true
     }
 }

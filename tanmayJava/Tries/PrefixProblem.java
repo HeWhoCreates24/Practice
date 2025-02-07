@@ -1,6 +1,7 @@
 public class PrefixProblem{
     public static class Node{
         Node[] children;
+        @SuppressWarnings("unused")
         boolean isEOW;
         int prefCount;
 

@@ -1,6 +1,7 @@
 import java.util.*;
 public class GraphImplementation{
 
+    @SuppressWarnings("unused")
     public static class Edge{
 
         int start;

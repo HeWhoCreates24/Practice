@@ -17,11 +17,13 @@ public class GraphImplementation{
     public static class Graph{
 
         ArrayList<Edge>[] graph;
+        public int size;
 
         @SuppressWarnings("unchecked")
         public Graph(int n){
 
             graph = new ArrayList[n];
+            size = n;
 
             for (int i = 0; i < n; i++){
                 graph[i] = new ArrayList<>();
@@ -73,6 +75,20 @@ public class GraphImplementation{
                 }
             }
         }
+
+        public boolean hasPath(int src, int dest, boolean[] visited){
+            if (src == dest){
+                return true;
+            }
+
+            visited[src] = true;
+            for (Edge e : graph[src]){
+                if (!visited[e.end] && hasPath(e.end, dest, visited)){
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 
     public static void main(String[] args) {
@@ -85,29 +101,48 @@ public class GraphImplementation{
             2 ------- 4 --------- 5 ------ 6
         */
 
-       Graph g = new Graph(7);
+        Graph g = new Graph(7);
 
-       g.addEdge(0, 1, 1);
-       g.addEdge(0, 2, 1);
-       g.addEdge(1, 0, 1);
-       g.addEdge(1, 3, 1);
-       g.addEdge(2, 0, 1);
-       g.addEdge(2, 4, 1);
-       g.addEdge(3, 1, 1);
-       g.addEdge(3, 4, 1);
-       g.addEdge(3, 5, 1);
-       g.addEdge(4, 2, 1);
-       g.addEdge(4, 3, 1);
-       g.addEdge(4, 5, 1);
-       g.addEdge(5, 3, 1);
-       g.addEdge(5, 4, 1);
-       g.addEdge(5, 6, 1);
-       g.addEdge(6, 5, 1);
+        g.addEdge(0, 1, 1);
+        g.addEdge(0, 2, 1);
 
-       System.out.print("BFS : ");
-       g.printBFS();
-       System.out.println();
-       System.out.print("DFS : ");
-       g.printDFS();
+        g.addEdge(1, 0, 1);
+        g.addEdge(1, 3, 1);
+
+        g.addEdge(2, 0, 1);
+        g.addEdge(2, 4, 1);
+
+        g.addEdge(3, 1, 1);
+        g.addEdge(3, 4, 1);
+        g.addEdge(3, 5, 1);
+
+        g.addEdge(4, 2, 1);
+        g.addEdge(4, 3, 1);
+        g.addEdge(4, 5, 1);
+
+        g.addEdge(5, 3, 1);
+        g.addEdge(5, 4, 1);
+        g.addEdge(5, 6, 1);
+        
+        g.addEdge(6, 5, 1);
+
+        System.out.print("BFS : ");
+        g.printBFS();
+        System.out.println();
+        System.out.print("DFS : ");
+        g.printDFS();
+        System.out.println();
+        
+        int[] src = {0, 1, 2, 3, 4, 5, 6}; 
+        int[] dest = {5, 2, 1, 6, 7, 4, 0};
+
+        for (int i = 0; i < 7; i++){
+
+            if (g.hasPath(src[i], dest[i], new boolean[g.size])){
+                System.out.println("path exists form " + src[i] + " to " + dest[i]);
+            }else{
+                System.out.println("path DOES NOT exist form " + src[i] + " to " + dest[i]);
+            }
+        }
     }
 }

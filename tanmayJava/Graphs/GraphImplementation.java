@@ -4,9 +4,9 @@ public class GraphImplementation{
     @SuppressWarnings("unused")
     public static class Edge{
 
-        int start;
-        int end;
-        int weight;
+        public int start;
+        public int end;
+        public int weight;
 
         public Edge(int st, int en, int w){
             start = st;
@@ -17,7 +17,7 @@ public class GraphImplementation{
 
     public static class Graph{
 
-        ArrayList<Edge>[] graph;
+        public ArrayList<Edge>[] graph;
         public int size;
 
         @SuppressWarnings("unchecked")
@@ -89,6 +89,14 @@ public class GraphImplementation{
                 }
             }
             return false;
+        }
+
+        public ArrayList<Edge> getEdges(int src){
+            if (src >= 0 && src < size){
+                return graph[src];
+            }else{
+                return null;
+            }
         }
     }
 

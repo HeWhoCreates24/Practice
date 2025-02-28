@@ -35,7 +35,7 @@ public class BellmanFord{
             if (i != src) sd[i] = Integer.MAX_VALUE;
         }
 
-        for (int i = 0; i < g.graph.length; i++){
+        for (int i = 1; i < g.graph.length; i++){
             for (ArrayList<Edge> node : g.graph) {
                 for (Edge e : node) {
                     if (e.src != Integer.MAX_VALUE && sd[e.src] + e.wt < sd[e.dest]){

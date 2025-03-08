@@ -1,4 +1,4 @@
-public class BuildST{
+public class SubarraySumST{
     public static int buildST(int[] arr, int[] st, int s, int e, int i){
         if (s == e) return st[i] = arr[s];
 
@@ -25,6 +25,7 @@ public class BuildST{
     }
     public static void update(int[] st, int[] arr, int i, int val){
         int diff = val - arr[i];
+        arr[i] = val;
         updateUtil(st, 0, arr.length-1, 0, i, diff);
     }
     public static void updateUtil(int[] st, int si, int sj, int sti, int i, int diff){

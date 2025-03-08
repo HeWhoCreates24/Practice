@@ -8,6 +8,21 @@ public class BuildST{
         int right = buildST(arr, st, mid+1, e, (2*i) + 2);
         return st[i] = left + right; 
     }
+    public static int getSum(int[] st, int[] arr, int qi, int qj){
+        return getSumUtil(st, 0, 0, arr.length-1, qi, qj);
+    }
+    public static int getSumUtil(int[] st, int i, int si, int sj, int qi, int qj){
+        if (sj < qi || qj < si){
+            return 0;
+        }else if (qi <= si && sj <= qj){
+            return st[i];
+        }else{
+            int mid = si + (sj-si)/2;
+            int left = getSumUtil(st, i*2 + 1, si, mid, qi, qj);
+            int right = getSumUtil(st, i*2 + 2, mid+1, sj, qi, qj);
+            return left + right;
+        }
+    }
     public static void main(String[] args) {
         int[] arr = {1, 2, 3, 4, 5, 6, 7, 8};
 
@@ -15,6 +30,8 @@ public class BuildST{
 
         buildST(arr, st, 0, arr.length-1, 0);
 
-        for (int node : st) System.out.print(node + " ");
+        // for (int node : st) System.out.print(node + " ");
+
+        System.out.println(getSum(st, arr, 3, 5));
     }
 }

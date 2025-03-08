@@ -23,6 +23,20 @@ public class BuildST{
             return left + right;
         }
     }
+    public static void update(int[] st, int[] arr, int i, int val){
+        int diff = val - arr[i];
+        updateUtil(st, 0, arr.length-1, 0, i, diff);
+    }
+    public static void updateUtil(int[] st, int si, int sj, int sti, int i, int diff){
+        if (i < si || sj < i) return;
+        
+        st[sti] += diff;
+        if (si == sj) return;
+        
+        int mid = si + (sj-si)/2;
+        updateUtil(st, si, mid, sti*2+1, i, diff);
+        updateUtil(st, mid+1, sj, sti*2+2, i, diff);
+    }
     public static void main(String[] args) {
         int[] arr = {1, 2, 3, 4, 5, 6, 7, 8};
 
@@ -32,6 +46,8 @@ public class BuildST{
 
         // for (int node : st) System.out.print(node + " ");
 
-        System.out.println(getSum(st, arr, 3, 5));
+        System.out.println(getSum(st, arr, 0, 3));
+        update(st, arr, 2, 2);
+        System.out.println(getSum(st, arr, 0, 3));
     }
 }
